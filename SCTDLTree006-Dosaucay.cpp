@@ -8,42 +8,50 @@ struct TreeNode {
     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
 };
 
-class Solution {
-public:
-    int maxDepth(TreeNode* root) {
-        if (!root) 
-            return 0;
-        int leftDepth = maxDepth(root->left);
-        int rightDepth = maxDepth(root->right);
+int maxDepth(TreeNode *root) {
+    return root == NULL ? 0 : max(maxDepth(root->left), maxDepth(root->right)) + 1;
+}
 
-        return 1 + max(leftDepth, rightDepth);
+TreeNode* buildTree(const vector<int>& nodes) {
+    if (nodes.empty() || nodes[0] == -1) return NULL;
+
+    TreeNode* root = new TreeNode(nodes[0]);
+    queue<TreeNode*> q;
+    q.push(root);
+    int i = 1;
+
+    while (!q.empty() && i < nodes.size()) {
+        TreeNode* current = q.front();
+        q.pop();
+
+        if (nodes[i] != -1) {
+            current->left = new TreeNode(nodes[i]);
+            q.push(current->left);
+        }
+        i++;
+
+        if (i < nodes.size() && nodes[i] != -1) {
+            current->right = new TreeNode(nodes[i]);
+            q.push(current->right);
+        }
+        i++;
     }
-};
 
-int main(){
+    return root;
+}
+
+int main() {
     int t;
     cin >> t;
-    while(t--){
+    while (t--) {
         int n;
         cin >> n;
-        TreeNode* root = new TreeNode(1);
-        queue<TreeNode*> q;
-        q.push(root);
-        for(int i = 0; i < n/2; i++){
-            TreeNode* cur = q.front();
-            q.pop();
-            int a;
-            cin >> a;
-            if(a != -1){
-                cur->left = new TreeNode(a);
-                q.push(cur->left);
-            }
-            cin >> a;
-            if(a != -1){
-                cur->right = new TreeNode(a);
-                q.push(cur->right);
-            }
+        vector<int> nodes(n);
+        for (int i = 0; i < n; i++) {
+            cin >> nodes[i];
         }
-        cout << Solution().maxDepth(root) << endl;
+        TreeNode* root = buildTree(nodes);
+        cout << maxDepth(root) << endl;
     }
+    return 0;
 }
