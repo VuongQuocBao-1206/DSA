@@ -1,0 +1,57 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        int n,dem,tmp;
+        cin>>n;
+        dem=0;
+        if(n>=1000){
+            dem+=n/1000;
+            tmp=n/1000;
+            n-=tmp*1000;
+        }
+         if(n>=500){
+            dem+=n/500;
+            tmp=n/500;
+            n-=tmp*500;
+        }
+         if(n>=200){
+            dem+=n/200;
+            tmp=n/200;
+            n-=tmp*200;
+        }
+         if(n>=100){
+            dem+=n/100;
+            tmp=n/100;
+            n-=tmp*100;
+        }
+         if(n>=50){
+            dem+=n/50;
+            tmp=n/50;
+            n-=tmp*50;
+        }
+         if(n>=20){
+            dem+=n/20;
+            tmp=n/20;
+            n-=tmp*20;
+        }
+         if(n>=10){
+            dem+=n/10;
+            tmp=n/10;
+            n-=tmp*10;
+        }
+         if(n>=5){
+            dem+=n/5;
+            tmp=n/5;
+            n-=tmp*5;
+        }
+         if(n>=2){
+            dem+=n/2;
+            tmp=n/2;
+            n-=tmp*2;
+        }
+        cout<<dem+n<<endl;
+    }
+}
