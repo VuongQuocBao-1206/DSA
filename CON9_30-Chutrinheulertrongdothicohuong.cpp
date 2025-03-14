@@ -4,7 +4,7 @@ using namespace std;
 vector<int> ke[1005];
 bool visited[1005];
 int Bacvao[1005], Bacra[1005];
-
+// hàm dfs, theo chiều sâu của đồ thị
 void dfs(int u) {
     visited[u] = true;
     for (auto v : ke[u]) {
@@ -13,17 +13,17 @@ void dfs(int u) {
         }
     }
 }
-
+// hàm ktra đồ thị có liên thông mạnh hay không
 bool isStronglyConnected(int v) {
-    memset(visited, false, sizeof(visited));
+    memset(visited, false, sizeof(visited)); // đặt lại mảng víit vè false
     dfs(1);
     for (int i = 1; i <= v; i++) {
-        if (!visited[i]) return false;
+        if (!visited[i]) return false; // các đỉnh chưa đc đi đến sẽ là false, còn kh sẽ trả về true.
     }
     return true;
 }
 
-bool cochutrinheuler(int v) {
+bool cochutrinheuler(int v) { // hàm ktra đồ thị có chứa chu trình euler kh
     for (int i = 1; i <= v; i++) {
         if (Bacvao[i] != Bacra[i]) return false;
     }
