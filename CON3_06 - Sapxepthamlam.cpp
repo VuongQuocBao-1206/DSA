@@ -17,7 +17,7 @@ bool canSortArray(vector<int>& A) {
 
     // Thực hiện đảo ngược mảng con
     for (int i = 0; i <= midIndex; i++) {
-        if (A[i] > A[midIndex] && A[N - 1 - i] < A[midIndex]) {
+        if (A[i] > A[midIndex] && A[N - 1 - i] < A[midIndex]) { // lấy phần tử so sánh với số gọi là trung điểm....
             swap(A[i], A[N - 1 - i]);
         }
     }
